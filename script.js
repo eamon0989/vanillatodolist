@@ -9,14 +9,14 @@ let toDos = [
         id: 1,
     }
 ];
-let printedList = document.getElementById('printedList')
+let printedList = document.getElementById('printedList') // select unordered list from dom
 let count = 2; //count is the id number of each toDo
 let toDo = {
     name: '',
     completed: false,
     id: '',
 };
-let retrievedCount;
+let retrievedCount; // to store items from localstorage
 
 window.onload = function() {
     // if there is something in localstorage, show it, otherwise show default
@@ -108,8 +108,6 @@ document.addEventListener('click', function(f) {
 }
 }, false);
 
-
-
 // allow submission of toDo by pressing Enter
 document.getElementById('newItem').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
@@ -118,7 +116,7 @@ document.getElementById('newItem').addEventListener('keypress', function (e) {
     }
 });
 
-// reset the page
+// reset the page using the reset button
 function clearStorage() {
     localStorage.clear();
     location.reload();

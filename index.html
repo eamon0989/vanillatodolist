@@ -10,22 +10,23 @@
 </head>
 <body>
     <div id="wrapper">
-    <h1>ToDo List</h1>
-
-    <div class="inputWrapper">
-    <form>
-        <input id="newItem" type="text" minlength="1">
-        <button id="addToDo" type="button" onclick="onSubmit()"><span class="material-icons-outlined">add_task</span></button>
-
-    </form>
-</div>
-
-    <ul id="printedList">
-    </ul>
-    <div id="resetWrapper">
-    <button id="reset" type="button" onclick="clearStorage()">Clear all and Reset</button>
-</div>
-</div>
+        <h1>ToDo List</h1>
+        
+        <div class="inputWrapper">
+            <form>
+                <input id="newItem" type="text" minlength="1">
+                <button id="addToDo" type="button" onclick="onSubmit()"><span class="material-icons-outlined">add_task</span></button>
+            
+            </form>
+        </div>
+    
+        <ul id="printedList">
+        </ul>
+        
+        <div id="resetWrapper">
+            <button id="reset" type="button" onclick="clearStorage()">Clear all and Reset</button>
+        </div>
+    </div>
 </body>
 <script src="script.js"></script>
 </html>
