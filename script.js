@@ -62,15 +62,21 @@ function updateStorage() {
 
 // adds new items to the DOM
 function addItemToDom(toDo) {
+    let div = document.createElement('div');
+    div.classList = "liDiv";
+    let buttonDiv = document.createElement('div');
+    buttonDiv.classList = "buttonDiv";
     let li = document.createElement('li'); // create list item
     li.textContent = toDo.name; // adds text
     li.id = toDo.id;    // adds id
-    printedList.appendChild(li); // adds list item to UL 
+    div.appendChild(li);
+    div.appendChild(buttonDiv);
+    printedList.appendChild(div); // adds list item to UL 
     let deleteButton = document.createElement('i'); // adds delete icon
     deleteButton.type = ('button'); // makes icon a button
     deleteButton.classList = "material-icons md-48";
     deleteButton.innerHTML = "delete";
-    li.appendChild(deleteButton); // adds button to list item
+    buttonDiv.appendChild(deleteButton); // adds button to list item
     if (toDo.completed == true) {
         li.classList.add('checked'); //checks if item is completed, adds strikethrough 
     } else { 
@@ -95,7 +101,8 @@ document.addEventListener('click', function(e) {
 document.addEventListener('click', function(f) {
     if (f.target.className == "material-icons md-48") {
     toDos = toDos.filter(item => item.id != f.target.parentNode.id); // selects list item (parent)
-    let elem = f.target.parentNode
+    let elem = f.target.parentNode.parentNode
+    console.log(elem);
     printedList.removeChild(elem); //removes parent
     updateStorage();
 }

@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 * {
-    margin: 0;
+    margin: 1px 0px;
 	padding: 0;
-	/* border: 0; */
-	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
     font-size: 20px;
@@ -15,7 +13,6 @@
 body {
     display: grid;
     grid-template-columns: 1fr min(60ch, calc(100% - 16px)) 1fr;
-    /* grid-column-gap: 32px; */ 
   }
 
 #wrapper {
@@ -49,7 +46,7 @@ button {
     font-weight: normal;
     font-style: normal;
     font-size: 24px;  /* Preferred icon size */
-    display: inline-block;
+    display: none;
     line-height: 1;
     text-transform: none;
     letter-spacing: normal;
@@ -70,10 +67,8 @@ button {
   }
 
 .inputWrapper {
-    /* width: 100%; */
     place-content: center;
     grid-column: 2;
-    margin: 0.2rem 0rem;
     margin: 0.2rem;
 
 }
@@ -92,30 +87,30 @@ input:focus{
   border-color: #2F95FA;
 }
 
-
-
 #addToDo {
     padding: 0rem 0.9rem;
-    place-items: right;
     width: 3.5rem;
-    background-color: #2F95FA;
+    background-color: #54a0ff;
 }
 
-ul {
-    /* padding: 1rem 0rem; */
+
+.liDiv {
+    display:flex;
+    flex-direction:row;
+    grid-column: 2;
+    margin: 0.2rem;
 }
+
 
 li {
     list-style-type: none;
     padding: 1rem;
-    margin: 0.2rem;
-    border: 1px;
     background-color: #F6F6F6;
     border: solid 1px transparent;
     overflow: hidden;  
     border-radius: 3px;
-
-    /* margin: -5px; */
+    width: 80%;
+    flex-grow: 2;
 
 }
 
@@ -126,15 +121,23 @@ li:hover {
 
 }
 
-li:hover > .md-48 {
-    visibility: visible;
+.liDiv:hover > .buttonDiv {
+    display: flex;
 }
 
-.md-48 {
-    float: right;
-    visibility: hidden;
+.buttonDiv {
+    /* display:flex; */
+    grid-column: 2;
+    margin: 0px;
+    justify-content: center;
+    align-items: center;
+    width: 3.5rem;
+    background-color: #ff6b6b;
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid #ccc;
+    display: none;
 }
-
 
 .checked {
     text-decoration: line-through;
@@ -150,6 +153,6 @@ li:hover > .md-48 {
 }
 
 #reset:hover {
-    background-color: #FA502E;
+    background-color: #ff6b6b;
 
 }
