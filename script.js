@@ -50,6 +50,7 @@ function onSubmit() {
         count++;
         addItemToDom(toDo);
         updateStorage(toDos, count);
+        document.getElementById('newItem').value = '';
     }
 }
 

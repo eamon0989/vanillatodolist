@@ -12,6 +12,30 @@
 
 }
 
+body {
+    display: grid;
+    grid-template-columns: 1fr min(60ch, calc(100% - 16px)) 1fr;
+    /* grid-column-gap: 32px; */
+  }
+
+#wrapper {
+    grid-column: 2;
+  }
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    padding: 1.5rem ;
+}
+
+form {
+    display:flex;
+    flex-direction:row;
+    width: 100%;
+    grid-column: 2;
+    margin: 0px;
+}
+
 button {
     border-radius: 3px;
     outline: none;
@@ -111,30 +135,6 @@ li:hover > .md-48 {
     visibility: hidden;
 }
 
-
-body {
-    display: grid;
-    grid-template-columns: 1fr min(60ch, calc(100% - 64px)) 1fr;
-    grid-column-gap: 32px;
-  }
-
-#wrapper {
-    grid-column: 2;
-  }
-
-h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    padding: 1.5rem ;
-}
-
-form {
-    display:flex;
-    flex-direction:row;
-    width: 100%;
-    grid-column: 2;
-    margin: 0px;
-}
 
 .checked {
     text-decoration: line-through;
