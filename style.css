@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 * {
     margin: 0;
 	padding: 0;
@@ -6,10 +8,71 @@
 	font: inherit;
 	vertical-align: baseline;
     font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+button {
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: #F6F6F6;
+
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
+
+.inputWrapper {
+    /* width: 100%; */
+    place-content: center;
+    grid-column: 2;
+    margin: 0.2rem 0rem;
+    margin: 0.2rem;
+
+}
+
+input {
+    padding: 1rem 0rem;
+    flex-grow:2;
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+
+
+#addToDo {
+    padding: 0rem 0.9rem;
+    place-items: right;
+    width: 3.5rem;
 }
 
 ul {
-    padding: 1rem 0rem;
+    /* padding: 1rem 0rem; */
 }
 
 li {
@@ -20,6 +83,8 @@ li {
     background-color: #F6F6F6;
     border: solid 1px transparent;
     overflow: hidden;  
+    border-radius: 3px;
+
     /* margin: -5px; */
 
 }
@@ -52,14 +117,27 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     padding: 1.5rem ;
 }
 
 form {
+    display:flex;
+    flex-direction:row;
     width: 100%;
+    grid-column: 2;
+    margin: 0px;
 }
 
 .checked {
     text-decoration: line-through;
+}
+
+#resetWrapper{
+    place-content: center;
+    display: grid;
+}
+
+#reset {
+    padding: 1rem;
 }

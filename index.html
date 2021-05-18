@@ -5,21 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <head><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <head><link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|" rel="stylesheet">
     <title>ToDo List</title>
 </head>
 <body>
     <div id="wrapper">
     <h1>ToDo List</h1>
 
+    <div class="inputWrapper">
     <form>
         <input id="newItem" type="text">
-        <button type="button" onclick="onSubmit()">Submit</button>
+        <button id="addToDo" type="button" onclick="onSubmit()"><span class="material-icons-outlined">add_task</span></button>
+
     </form>
+</div>
 
     <ul id="printedList">
     </ul>
-    <button type="button" onclick="clearStorage()">Reset</button>
+    <div id="resetWrapper">
+    <button id="reset" type="button" onclick="clearStorage()">Reset</button>
+</div>
 </div>
 </body>
 <script src="script.js"></script>
