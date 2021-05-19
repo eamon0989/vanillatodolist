@@ -99,6 +99,15 @@ input:focus{
     margin: 0.2rem;
 }
 
+.liDivAnimation {
+    display:flex;
+    flex-direction:row;
+    grid-column: 2;
+    margin: 0.2rem;
+    animation-duration: 0.3s;
+    animation-name: slideOut;
+}
+
 li {
     list-style-type: none;
     padding: 1rem;
@@ -109,14 +118,15 @@ li {
     width: 80%;
     flex-grow: 2;
 }
+@media (hover: hover) { 
+    .liDiv:hover > .buttonDiv {
+        display: flex;
+    }
+ }
 
 li:hover {
     border: 1px solid #333333;
     overflow: hidden;  
-}
-
-.liDiv:hover > .buttonDiv {
-    display: flex;
 }
 
 .buttonDiv {
@@ -130,6 +140,7 @@ li:hover {
     outline: none;
     border: 1px solid #ccc;
     display: none;
+    visibility: none;
 }
 
 .checked {
@@ -149,3 +160,15 @@ li:hover {
     background-color: #ff6b6b;
 
 }
+
+@keyframes slideOut {
+    from {
+        margin-left: 0%;
+        width: 100%;
+      }
+      to {
+        margin-left: 100%;
+        width: 100%;
+      }
+}
+  

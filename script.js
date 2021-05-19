@@ -1,14 +1,36 @@
-// default toDos
-let toDos = [
-    {   name: "Click on a todo to mark it as completed",
-        completed: false,
-        id: 0,
-    },
-    {   name: "Click the bin icon to delete it",
-        completed: false,
-        id: 1,
+const cantHover = window.matchMedia('(hover: none)').matches; //check if it's a touchscreen (no mouse)
+let toDos;
+
+// if there is no mouse, show first list, if there is a mouse, show second list
+function checkHover() {
+    if (cantHover) {
+        // default toDos
+        toDos = [
+        {   name: "Click on a todo to mark it as completed",
+            completed: false,
+            id: 0,
+        },
+        {   name: "Then swipe right to remove from list",
+            completed: false,
+            id: 1,
+        }
+    ];
+      } else {
+        // default toDos
+        toDos = [
+        {   name: "Click on a todo to mark it as completed",
+            completed: false,
+            id: 0,
+        },
+        {   name: "Then click the bin icon to remove it",
+            completed: false,
+            id: 1,
+        }
+    ];
     }
-];
+}
+
+
 let printedList = document.getElementById('printedList') // select unordered list from dom
 let count = 2; //count is the id number of each toDo
 let toDo = {
@@ -21,6 +43,7 @@ let retrievedCount; // to store items from localstorage
 window.onload = function() {
     // if there is something in localstorage, show it, otherwise show default
     if (JSON.parse(window.localStorage.getItem('toDos')) === null ) {
+        checkHover();
         toDos.forEach(addItemToDom);
     } else {
         retrievedItem = window.localStorage.getItem('toDos');
@@ -28,10 +51,6 @@ window.onload = function() {
         toDos.forEach(addItemToDom);
         retrievedCount = window.localStorage.getItem('count');
         count = JSON.parse(retrievedCount);
-        console.log(count);
-        console.log(typeof(count));
-
-        console.log(toDos);
     }
 }
 
@@ -66,6 +85,7 @@ function addItemToDom(toDo) {
     div.classList = "liDiv";
     let buttonDiv = document.createElement('div');
     buttonDiv.classList = "buttonDiv";
+    buttonDiv.id = toDo.id;
     let li = document.createElement('li'); // create list item
     li.textContent = toDo.name; // adds text
     li.id = toDo.id;    // adds id
@@ -99,10 +119,12 @@ document.addEventListener('click', function(e) {
 
 // adds event listener to delete icons to delete the list item from dom and localstorage
 document.addEventListener('click', function(f) {
-    if (f.target.className == "material-icons md-48") {
-    toDos = toDos.filter(item => item.id != f.target.parentNode.id); // selects list item (parent)
+    // console.log(f.target.parentNode);
+    let compStyles = getComputedStyle(f.target.parentNode);
+    let disType = compStyles.getPropertyValue('display');    
+    if ((f.target.className == "material-icons md-48") && (disType === 'flex') && (f.target.parentNode.className === 'buttonDiv')) {
+    toDos = toDos.filter(item => item.id != f.target.parentNode.id); // selects list item (parent) and removes it from toDos
     let elem = f.target.parentNode.parentNode
-    console.log(elem);
     printedList.removeChild(elem); //removes parent
     updateStorage();
 }
@@ -120,4 +142,59 @@ document.getElementById('newItem').addEventListener('keypress', function (e) {
 function clearStorage() {
     localStorage.clear();
     location.reload();
+}
+
+//check for swipes on touchscreens
+document.addEventListener('touchstart', function (event) {
+    touchstartX = event.changedTouches[0].screenX;
+    touchstartY = event.changedTouches[0].screenY;
+}, false);
+
+document.addEventListener('touchend', function (event) {
+    touchendX = event.changedTouches[0].screenX;
+    touchendY = event.changedTouches[0].screenY;
+    handleGesture();
+}, false);
+
+let elem; //stores the div that user swipes on
+let itemId; //stores id of swiped item
+
+function handleGesture() {
+    // if (touchendX < touchstartX) {
+    //     console.log('Swiped Left');
+    // }
+    // if swipe right is detected on a completed item, it is deleted
+    if ((touchendX > touchstartX) && (event.target.parentNode.className === 'liDiv')) {
+        console.log('Swiped Right');
+            elem = event.target.parentNode
+            elemId = event.target.id
+            console.log(elem);
+            console.log(elemId);
+
+            if (event.target.className == "checked") {
+                elem.className = "liDivAnimation";
+                itemId = event.target.id
+                elem.addEventListener("animationend", listener, false);
+            }
+    }
+    // if (touchendY < touchstartY) {
+    //     console.log('Swiped Up');
+    // }
+
+    // if (touchendY > touchstartY) {
+    //     console.log('Swiped Down');
+    // }
+
+    // if (touchendY === touchstartY) {
+    //     console.log('Tap');
+    // }
+}
+
+//listens for end of animation, then removes div and item from toDo list
+function listener() {
+    toDos = toDos.filter(item => item.id != itemId); // selects list item (parent)
+    console.log(itemId);
+    printedList.removeChild(elem); //removes parent
+    updateStorage();
+    console.log(toDos);
 }
