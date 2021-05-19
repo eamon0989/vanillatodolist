@@ -58,7 +58,8 @@ window.onload = function() {
 function onSubmit() {
     let empty = document.getElementById('newItem').value;
     if (empty !== "") {
-        let newToDo = document.getElementById('newItem').value;
+        let input = document.getElementById('newItem').value;
+        let newToDo = decodeHtml(input);
         console.log(toDos);
         toDo = {
             name: newToDo,
@@ -71,6 +72,13 @@ function onSubmit() {
         updateStorage(toDos, count);
         document.getElementById('newItem').value = '';
     }
+}
+
+// sanitizes input
+function decodeHtml(html) {
+    let txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
 }
 
 // adds changes to local storage
@@ -138,12 +146,6 @@ document.getElementById('newItem').addEventListener('keypress', function (e) {
     }
 });
 
-// reset the page using the reset button
-function clearStorage() {
-    localStorage.clear();
-    location.reload();
-}
-
 //check for swipes on touchscreens
 document.addEventListener('touchstart', function (event) {
     touchstartX = event.changedTouches[0].screenX;
@@ -196,5 +198,15 @@ function listener() {
     console.log(itemId);
     printedList.removeChild(elem); //removes parent
     updateStorage();
-    console.log(toDos);
+    // console.log(toDos);
+}
+
+// reset the page using the reset button
+function clearStorage() {
+    localStorage.clear();
+    toDos = [];
+    printedList.textContent = '';
+    document.getElementById('newItem').value = '';
+    checkHover();
+    toDos.forEach(addItemToDom);
 }
