@@ -62,7 +62,6 @@ function onSubmit() {
     if (empty !== "") {
         let input = document.getElementById('newItem').value;
         let newToDo = decodeHtml(input);
-        console.log(toDos);
         toDo = {
             name: newToDo,
             completed: false,
@@ -129,13 +128,15 @@ document.addEventListener('click', function(e) {
 
 // adds event listener to delete icons to delete the list item from dom and localstorage
 document.addEventListener('click', function(f) {
-    let compStyles = getComputedStyle(f.target.parentNode);
-    let disType = compStyles.getPropertyValue('display');    
-    if ((f.target.className == "material-icons md-48") && (disType === 'flex') && (f.target.parentNode.className === 'buttonDiv')) {
-    elem = f.target.parentNode.parentNode
-    itemId = f.target.parentNode.id
-    deleteAnimation();
-}
+    if (f.target.className == "material-icons md-48") {
+        let compStyles = getComputedStyle(f.target.parentNode);
+        let disType = compStyles.getPropertyValue('display');    
+        if ((f.target.className == "material-icons md-48") && (disType === 'flex') && (f.target.parentNode.className === 'buttonDiv')) {
+        elem = f.target.parentNode.parentNode
+        itemId = f.target.parentNode.id
+        deleteAnimation();
+        }
+    }
 }, false);
 
 // allow submission of toDo by pressing Enter
