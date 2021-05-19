@@ -152,30 +152,31 @@ document.addEventListener('touchstart', function (event) {
     touchstartY = event.changedTouches[0].screenY;
 }, false);
 
-document.addEventListener('touchend', function (event) {
-    touchendX = event.changedTouches[0].screenX;
-    touchendY = event.changedTouches[0].screenY;
-    handleGesture();
+document.addEventListener('touchend', function (w) {
+    touchendX = w.changedTouches[0].screenX;
+    touchendY = w.changedTouches[0].screenY;
+    let wEvent = w;
+    handleGesture(wEvent);
 }, false);
 
 let elem; //stores the div that user swipes on
 let itemId; //stores id of swiped item
 
-function handleGesture() {
+function handleGesture(wEvent) {
     // if (touchendX < touchstartX) {
     //     console.log('Swiped Left');
     // }
     // if swipe right is detected on a completed item, it is deleted
-    if ((touchendX > touchstartX) && (event.target.parentNode.className === 'liDiv')) {
+    if ((touchendX > touchstartX) && (wEvent.target.parentNode.className === 'liDiv')) {
         console.log('Swiped Right');
-            elem = event.target.parentNode
-            elemId = event.target.id
+            elem = wEvent.target.parentNode
+            elemId = wEvent.target.id
             console.log(elem);
             console.log(elemId);
 
-            if (event.target.className == "checked") {
+            if (wEvent.target.className == "checked") {
                 elem.className = "liDivAnimation";
-                itemId = event.target.id
+                itemId = wEvent.target.id
                 elem.addEventListener("animationend", listener, false);
             }
     }
