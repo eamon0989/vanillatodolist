@@ -6,7 +6,7 @@ function checkHover() {
     if (cantHover) {
         // default toDos
         toDos = [
-        {   name: "Click on a todo to mark it as completed",
+        {   name: "Tap on a todo to mark it as completed",
             completed: false,
             id: 0,
         },
