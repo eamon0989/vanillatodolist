@@ -1,5 +1,15 @@
 const cantHover = window.matchMedia('(hover: none)').matches; //check if it's a touchscreen (no mouse)
-let toDos;
+let toDos = [];
+let printedList = document.getElementById('printedList') // select unordered list from dom
+let count = 2; //count is the unique id number of each toDo
+let toDo = {
+    name: '',
+    completed: false,
+    id: '',
+};
+let retrievedCount; // to store items from localstorage
+let elem; //stores the div that user deletes
+let itemId; //stores id of deleted item
 
 // if there is no mouse, show first list, if there is a mouse, show second list
 function checkHover() {
@@ -31,14 +41,6 @@ function checkHover() {
 }
 
 
-let printedList = document.getElementById('printedList') // select unordered list from dom
-let count = 2; //count is the id number of each toDo
-let toDo = {
-    name: '',
-    completed: false,
-    id: '',
-};
-let retrievedCount; // to store items from localstorage
 
 window.onload = function() {
     // if there is something in localstorage, show it, otherwise show default
@@ -125,9 +127,6 @@ document.addEventListener('click', function(e) {
     }
 }, false);
 
-let elem; //stores the div that user deletes
-let itemId; //stores id of deleted item
-
 // adds event listener to delete icons to delete the list item from dom and localstorage
 document.addEventListener('click', function(f) {
     let compStyles = getComputedStyle(f.target.parentNode);
@@ -192,12 +191,9 @@ function deleteAnimation() {
 
 //listens for end of animation, then removes div and item from toDo list
 function listener() {
-    console.log(itemId);
     toDos = toDos.filter(item => item.id != itemId); // selects list item (parent)
-    // console.log(itemId);
     printedList.removeChild(elem); //removes parent
     updateStorage();
-    // console.log(toDos);
 }
 
 // reset the page using the reset button
