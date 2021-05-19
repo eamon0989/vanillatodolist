@@ -125,16 +125,17 @@ document.addEventListener('click', function(e) {
     }
 }, false);
 
+let elem; //stores the div that user deletes
+let itemId; //stores id of deleted item
+
 // adds event listener to delete icons to delete the list item from dom and localstorage
 document.addEventListener('click', function(f) {
-    // console.log(f.target.parentNode);
     let compStyles = getComputedStyle(f.target.parentNode);
     let disType = compStyles.getPropertyValue('display');    
     if ((f.target.className == "material-icons md-48") && (disType === 'flex') && (f.target.parentNode.className === 'buttonDiv')) {
-    toDos = toDos.filter(item => item.id != f.target.parentNode.id); // selects list item (parent) and removes it from toDos
-    let elem = f.target.parentNode.parentNode
-    printedList.removeChild(elem); //removes parent
-    updateStorage();
+    elem = f.target.parentNode.parentNode
+    itemId = f.target.parentNode.id
+    deleteAnimation();
 }
 }, false);
 
@@ -159,25 +160,16 @@ document.addEventListener('touchend', function (w) {
     handleGesture(wEvent);
 }, false);
 
-let elem; //stores the div that user swipes on
-let itemId; //stores id of swiped item
-
-function handleGesture(wEvent) {
+function handleGesture(wEvent) { //I left in the other swipes incase I want to use them later
     // if (touchendX < touchstartX) {
     //     console.log('Swiped Left');
     // }
     // if swipe right is detected on a completed item, it is deleted
     if ((touchendX > touchstartX) && (wEvent.target.parentNode.className === 'liDiv')) {
-        console.log('Swiped Right');
             elem = wEvent.target.parentNode
-            elemId = wEvent.target.id
-            console.log(elem);
-            console.log(elemId);
-
+            itemId = wEvent.target.id
             if (wEvent.target.className == "checked") {
-                elem.className = "liDivAnimation";
-                itemId = wEvent.target.id
-                elem.addEventListener("animationend", listener, false);
+                deleteAnimation();
             }
     }
     // if (touchendY < touchstartY) {
@@ -193,10 +185,16 @@ function handleGesture(wEvent) {
     // }
 }
 
+function deleteAnimation() {
+    elem.className = "liDivAnimation";
+    elem.addEventListener("animationend", listener, false);
+}
+
 //listens for end of animation, then removes div and item from toDo list
 function listener() {
-    toDos = toDos.filter(item => item.id != itemId); // selects list item (parent)
     console.log(itemId);
+    toDos = toDos.filter(item => item.id != itemId); // selects list item (parent)
+    // console.log(itemId);
     printedList.removeChild(elem); //removes parent
     updateStorage();
     // console.log(toDos);
