@@ -58,7 +58,7 @@ window.onload = function() {
 
 // checks input field for value, if there is a string it adds it to the array and displays it
 function onSubmit() {
-    let empty = document.getElementById('newItem').value;
+    let empty = document.getElementById('newItem').value.trim();
     if (empty !== "") {
         let input = document.getElementById('newItem').value;
         let newToDo = decodeHtml(input);
