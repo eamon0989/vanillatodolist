@@ -7,14 +7,6 @@ const filesToCache = [
   "/icon.png",
 ]
 
-// self.addEventListener("install", installEvent => {
-//   installEvent.waitUntil(
-//     caches.open(staticToDo).then(cache => {
-//       cache.addAll(assets)
-//     })
-//   )
-// })
-
 self.addEventListener("install", e => {
     console.log("[ServiceWorker**] Install");
     e.waitUntil(
@@ -45,26 +37,3 @@ self.addEventListener("fetch", event => {
       })
     );
   });
-
-// self.addEventListener("fetch", fetchEvent => {
-//     fetchEvent.respondWith(
-//       caches.match(fetchEvent.request).then(res => {
-//         return res || fetch(fetchEvent.request)
-//       })
-//     )
-//   })
-
-//   if ('serviceWorker' in navigator) {
-//     window.addEventListener('load',()=> {
-//       navigator.serviceWorker.register('/serviceWorker.js');
-//     });
-//   }
-
-// if ("serviceWorker" in navigator) {
-//   window.addEventListener("load", function() {
-    // navigator.serviceWorker
-    //   .register("/serviceWorker.js")
-    //   .then(res => console.log("service worker registered"))
-    //   .catch(err => console.log("service worker not registered", err))
-//   })
-// }
