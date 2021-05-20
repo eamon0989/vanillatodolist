@@ -206,3 +206,9 @@ function clearStorage() {
     checkHover();
     toDos.forEach(addItemToDom);
 }
+
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("serviceWorker.js").then(() => {
+      console.log("[ServiceWorker**] - Registered");
+    });
+  }
