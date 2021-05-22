@@ -170,6 +170,8 @@ function handleGesture(wEvent) { //I left in the other swipes incase I want to u
             itemId = wEvent.target.id
             if (wEvent.target.className == "checked") {
                 deleteAnimation();
+            } else {
+              alert('Tap an item to mark it checked first, then you can swipe to delete it.')
             }
     }
     // if (touchendY < touchstartY) {
