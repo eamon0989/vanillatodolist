@@ -165,7 +165,7 @@ function handleGesture(wEvent) { //I left in the other swipes incase I want to u
     //     console.log('Swiped Left');
     // }
     // if swipe right is detected on a completed item, it is deleted
-    if ((touchendX > touchstartX) && (wEvent.target.parentNode.className === 'liDiv')) {
+    if ((touchendX > touchstartX + 70) && (wEvent.target.parentNode.className === 'liDiv')) {
             elem = wEvent.target.parentNode
             itemId = wEvent.target.id
             if (wEvent.target.className == "checked") {
