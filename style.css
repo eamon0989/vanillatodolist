@@ -104,7 +104,7 @@ input:focus{
     flex-direction:row;
     grid-column: 2;
     margin: 0.2rem;
-    animation-duration: 0.3s;
+    animation-duration: 0.5s;
     animation-name: slideOut;
 }
 
@@ -165,10 +165,12 @@ li:hover {
     from {
         margin-left: 0%;
         width: 100%;
+        opacity:1;
       }
       to {
         margin-left: 100%;
         width: 100%;
+        opacity:0;
       }
 }
   
