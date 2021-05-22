@@ -63,7 +63,7 @@ button {
     outline: none;
     border: 1px solid #ccc;
     background-color: #F6F6F6;
-
+    cursor: pointer;
 }
 
 .inputWrapper {
@@ -141,6 +141,7 @@ li:hover {
     border: 1px solid #ccc;
     display: none;
     visibility: none;
+    cursor: pointer;
 }
 
 .checked {
@@ -176,4 +177,7 @@ li:hover {
         opacity:0;
       }
 }
-  
+
+/* button:hover {
+  cursor: pointer;
+} */
