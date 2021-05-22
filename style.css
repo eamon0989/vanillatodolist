@@ -167,6 +167,9 @@ li:hover {
         width: 100%;
         opacity:1;
       }
+      90% {
+        opacity: 0;
+      }
       to {
         margin-left: 100%;
         width: 100%;
